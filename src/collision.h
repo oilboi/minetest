@@ -61,6 +61,7 @@ struct collisionMoveResult
 	bool touching_ground = false;
 	bool collides = false;
 	bool standing_on_object = false;
+	bool moving_down = false;
 	std::vector<CollisionInfo> collisions;
 };
 
@@ -70,6 +71,7 @@ collisionMoveResult collisionMoveSimple(Environment *env,IGameDef *gamedef,
 		f32 stepheight, f32 dtime,
 		v3f *pos_f, v3f *speed_f,
 		v3f accel_f, ActiveObject *self=NULL,
+		bool sneaking = false,
 		bool collideWithObjects=true);
 
 // Helper function:

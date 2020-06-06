@@ -292,9 +292,12 @@ void LocalPlayer::move(f32 dtime, Environment *env, f32 pos_max_d,
 	const v3f initial_position = position;
 	const v3f initial_speed = m_speed;
 
+	bool is_sneaking = control.sneak;
+	//std::cout << is_sneaking << "\n";
+
 	collisionMoveResult result = collisionMoveSimple(env, m_client,
 		pos_max_d, m_collisionbox, player_stepheight, dtime,
-		&position, &m_speed, accel_f);
+		&position, &m_speed, accel_f, NULL, control.sneak);
 
 	bool could_sneak = control.sneak && !free_move && !in_liquid &&
 		!is_climbing && physics_override_sneak;
@@ -347,7 +350,7 @@ void LocalPlayer::move(f32 dtime, Environment *env, f32 pos_max_d,
 
 	/*
 		If sneaking, keep on top of last walked node and don't fall off
-	*/
+	
 	if (could_sneak && m_sneak_node_exists) {
 		const v3f sn_f = intToFloat(m_sneak_node, BS);
 		const v3f bmin = sn_f + m_sneak_node_bb_top.MinEdge;
@@ -397,7 +400,7 @@ void LocalPlayer::move(f32 dtime, Environment *env, f32 pos_max_d,
 		}
 	}
 
-	/*
+	
 		Find the next sneak node if necessary
 	*/
 	bool new_sneak_node_exists = false;

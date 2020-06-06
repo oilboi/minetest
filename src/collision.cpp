@@ -227,8 +227,11 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 		f32 stepheight, f32 dtime,
 		v3f *pos_f, v3f *speed_f,
 		v3f accel_f, ActiveObject *self,
+		bool sneaking,
 		bool collideWithObjects)
 {
+	const v3f initial_position = *pos_f;
+
 	static bool time_notification_done = false;
 	Map *map = &env->getMap();
 
@@ -576,9 +579,16 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 	/*
 		Final touches: Check if standing on ground, step up stairs.
 	*/
-	aabb3f box = box_0;
+	aabb3f box  = box_0;
+	aabb3f box2 = box_0;
+	aabb3f box3;
+
+	bool found_sneak_node = false;
+	
 	box.MinEdge += *pos_f;
 	box.MaxEdge += *pos_f;
+	v3f old_pos = *pos_f;
+
 	for (const auto &box_info : cinfo) {
 		const aabb3f &cbox = box_info.box;
 
@@ -593,18 +603,52 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 		if (cbox.MaxEdge.X - d > box.MinEdge.X && cbox.MinEdge.X + d < box.MaxEdge.X &&
 				cbox.MaxEdge.Z - d > box.MinEdge.Z &&
 				cbox.MinEdge.Z + d < box.MaxEdge.Z) {
+
 			if (box_info.is_step_up) {
 				pos_f->Y += cbox.MaxEdge.Y - box.MinEdge.Y;
 				box = box_0;
 				box.MinEdge += *pos_f;
 				box.MaxEdge += *pos_f;
+			}else if((cbox.MaxEdge.X - cbox.MinEdge.X != 10 || cbox.MaxEdge.Y - cbox.MinEdge.Y != 10 || cbox.MaxEdge.Z - cbox.MinEdge.Z != 10) &&
+				box.MinEdge.Y > cbox.MaxEdge.Y && box.MinEdge.Y - (stepheight * 2.2) < cbox.MaxEdge.Y && 
+				speed_f->Y < 0.f){
+				pos_f->Y = cbox.MaxEdge.Y;
+				speed_f->Y = 0.0f;
+				box = box_0;
+				box.MinEdge += *pos_f;
+				box.MaxEdge += *pos_f;
+				result.moving_down = true;
 			}
+			
+
 			if (std::fabs(cbox.MaxEdge.Y - box.MinEdge.Y) < 0.05f) {
 				result.touching_ground = true;
 
 				if (box_info.isObject())
 					result.standing_on_object = true;
 			}
+			if (std::fabs(cbox.MaxEdge.Y - box.MinEdge.Y) < 0.05f) {
+				if(sneaking && !found_sneak_node){
+					found_sneak_node = true;
+					box3 = cbox;
+				}
+			}
+		}
+	}
+	if(found_sneak_node ){
+		// Only center player when they're on the node
+		pos_f->X = rangelim(pos_f->X,
+			box3.MinEdge.X + (box2.MinEdge.X * 0.95), box3.MaxEdge.X + (box2.MaxEdge.X * 0.95));
+		pos_f->Z = rangelim(pos_f->Z,
+			box3.MinEdge.Z + (box2.MinEdge.Z * 0.95), box3.MaxEdge.Z + (box2.MaxEdge.Z * 0.95));
+
+		if (pos_f->X != old_pos.X){
+			speed_f->X = 0.0f;
+			pos_f->Y = old_pos.Y;
+		}
+		if (pos_f->Z != old_pos.Z){
+			speed_f->Z = 0.0f;
+			pos_f->Y = old_pos.Y;
 		}
 	}
 
