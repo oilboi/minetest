@@ -588,7 +588,17 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 	box.MinEdge += *pos_f;
 	box.MaxEdge += *pos_f;
 	v3f old_pos = *pos_f;
+	
+	
+	float x_up   = 0.96f;
+	float x_down = 0.96f;
+	float z_up   = 0.96f;
+	float z_down = 0.96f;
 
+	float sneak_distance_x = 3.0f;
+	float sneak_distance_z = 3.0f;
+
+	std::cout << "--------------------\n";
 	for (const auto &box_info : cinfo) {
 		const aabb3f &cbox = box_info.box;
 
@@ -627,20 +637,71 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 				if (box_info.isObject())
 					result.standing_on_object = true;
 			}
+
+
 			if (std::fabs(cbox.MaxEdge.Y - box.MinEdge.Y) < 0.05f) {
-				if(sneaking && !found_sneak_node){
+				//std::cout << box_info.position.X <<"\n";
+				//std::cout << box_info.position.Z <<"\n";
+				
+				if(sneaking && (floor(pos_f->X / BS + 0.5f) == box_info.position.X && floor(pos_f->Z / BS + 0.5f) == box_info.position.Z)){
 					found_sneak_node = true;
 					box3 = cbox;
+					sneak_distance_x = fabs((pos_f->X/BS) - box_info.position.X);
+					sneak_distance_z = fabs((pos_f->Z/BS) - box_info.position.Z);
+
+				}else if(sneaking && (floor(pos_f->X / BS + 0.5f) != box_info.position.X || floor(pos_f->Z / BS + 0.5f) != box_info.position.Z)){
+
+					std::cout << box_info.position.X << "\n";
+					std::cout  << pos_f->X / BS << "\n";
+
+					if(fabs((pos_f->X/BS) - box_info.position.X) < sneak_distance_x && fabs((pos_f->Z/BS)- box_info.position.Z) < sneak_distance_z){
+						box3 = cbox;
+						found_sneak_node = true;
+
+						sneak_distance_x = fabs(pos_f->X - box_info.position.X);
+						sneak_distance_z = fabs(pos_f->Z - box_info.position.Z);
+					}
+
+					if (floor(pos_f->X / BS + 0.5f) > box_info.position.X){
+						x_down = 1.2f * BS;
+						//std::cout << "-x\n";
+					}
+					if (floor(pos_f->X / BS + 0.5f) < box_info.position.X){
+						x_up = 1.2f * BS;
+						//std::cout << "+x\n";
+					}
+
+					if (floor(pos_f->Z / BS + 0.5f) > box_info.position.Z){
+						z_down = 1.2f * BS;
+						//std::cout << "-z\n";
+					}
+					if (floor(pos_f->Z / BS + 0.5f) < box_info.position.Z){
+						z_up = 1.2f * BS;
+						//std::cout << "+z\n";
+					}
 				}
 			}
 		}
 	}
-	if(found_sneak_node ){
+	v3s16 test;
+	test.X = pos_f->X / BS;
+	test.Y = (pos_f->Y / BS) - 0.5f;
+	test.Z = pos_f->Z / BS;
+	
+	bool is_position_valid;
+	const NodeDefManager *nodedef = gamedef->getNodeDefManager();
+	
+	MapNode n = map->getNode(test, &is_position_valid);
+
+	const ContentFeatures &f = nodedef->get(n);
+
+	if(!f.walkable && found_sneak_node ){
 		// Only center player when they're on the node
 		pos_f->X = rangelim(pos_f->X,
-			box3.MinEdge.X + (box2.MinEdge.X * 0.95), box3.MaxEdge.X + (box2.MaxEdge.X * 0.95));
+			box3.MinEdge.X + (box2.MinEdge.X * x_down), box3.MaxEdge.X + (box2.MaxEdge.X * x_up));
 		pos_f->Z = rangelim(pos_f->Z,
-			box3.MinEdge.Z + (box2.MinEdge.Z * 0.95), box3.MaxEdge.Z + (box2.MaxEdge.Z * 0.95));
+			box3.MinEdge.Z + (box2.MinEdge.Z * z_down), box3.MaxEdge.Z + (box2.MaxEdge.Z * z_up));
+		
 
 		if (pos_f->X != old_pos.X){
 			speed_f->X = 0.0f;
