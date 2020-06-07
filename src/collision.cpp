@@ -675,11 +675,14 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 
 	const NodeDefManager *nodedef = gamedef->getNodeDefManager();
 	const ContentFeatures &fe = nodedef->get(nunder);
-	std::cout << "--------------------\n";
-	std::cout << "X:" << under_test.X << " Y:" << under_test.Y << " Z:" << under_test.Z << "\n";
-	std::cout << fe.name << "\n";
+
 	
-	if(!fe.walkable && !result.is_step_up && !result.moving_down && found_sneak_node && speed_f->Y == 0.f){
+	
+	bool is_full_x = (box3.MaxEdge.X - box3.MinEdge.X == 10);
+	bool is_full_z = (box3.MaxEdge.Z - box3.MinEdge.Z == 10);
+
+
+	if((!fe.walkable || !is_full_x || !is_full_z) && !result.is_step_up && !result.moving_down && found_sneak_node && speed_f->Y == 0.f){
 		v3s16 test;
 		test.X = sneak_node_pos_x + 1;
 		test.Y = sneak_node_pos_y;
@@ -691,7 +694,7 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 		
 		float x_limit_up = 2.0f*BS;
 		if(!f.walkable){
-			x_limit_up = 0.95f;
+			x_limit_up = box3.MaxEdge.X-box.MaxEdge.X+(box2.MaxEdge.X/2.0f);
 		}
 
 
@@ -704,8 +707,13 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 
 		float x_limit_down = 2.0f*BS;
 		if(!t.walkable){
-			x_limit_down = 0.95f;
+			x_limit_down = box.MinEdge.X-box3.MinEdge.X-(box2.MinEdge.X/2.0f);
 		}
+
+		std::cout << "--------------------\n";
+		std::cout << "X:" << under_test.X << " Y:" << under_test.Y << " Z:" << under_test.Z << "\n";
+		std::cout << x_limit_up << "\n";
+		std::cout << x_limit_down << "\n";
 		
 
 
@@ -718,8 +726,9 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 
 		float z_limit_down = 2.0f*BS;
 		if(!w.walkable){
-			z_limit_down = 0.95f;
+			z_limit_down = box.MinEdge.Z-box3.MinEdge.Z-(box2.MinEdge.Z/2.0f);
 		}
+
 
 		v3s16 test4;
 		test4.X = sneak_node_pos_x;
@@ -730,16 +739,16 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 
 		float z_limit_up = 2.0f*BS;
 		if(!l.walkable){
-			z_limit_up = 0.95f;
+			z_limit_up = box3.MaxEdge.Z-box.MaxEdge.Z+(box2.MaxEdge.Z/2.0f);
 		}
 
 
 
 		// Only center player when they're on the node
 		pos_f->X = rangelim(pos_f->X,
-			box3.MinEdge.X-x_limit_down, box3.MaxEdge.X+x_limit_up);
+			box.MinEdge.X-x_limit_down, box.MaxEdge.X+x_limit_up);
 		pos_f->Z = rangelim(pos_f->Z,
-			box3.MinEdge.Z-z_limit_down, box3.MaxEdge.Z+z_limit_up);
+			box.MinEdge.Z-z_limit_down, box.MaxEdge.Z+z_limit_up);
 		
 
 		if (pos_f->X != old_pos.X){
