@@ -61,6 +61,7 @@ struct collisionMoveResult
 	bool touching_ground = false;
 	bool collides = false;
 	bool standing_on_object = false;
+	bool is_step_up = false;
 	bool moving_down = false;
 	std::vector<CollisionInfo> collisions;
 };
