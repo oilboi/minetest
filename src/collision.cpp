@@ -620,15 +620,6 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 				box.MinEdge += *pos_f;
 				box.MaxEdge += *pos_f;
 				result.is_step_up = true;
-			}else if((cbox.MaxEdge.X - cbox.MinEdge.X != 10 || cbox.MaxEdge.Y - cbox.MinEdge.Y != 10 || cbox.MaxEdge.Z - cbox.MinEdge.Z != 10) &&
-				box.MinEdge.Y > cbox.MaxEdge.Y && box.MinEdge.Y - (stepheight * 2.2) < cbox.MaxEdge.Y && 
-				speed_f->Y < 0.f){
-				pos_f->Y = cbox.MaxEdge.Y;
-				speed_f->Y = 0.0f;
-				box = box_0;
-				box.MinEdge += *pos_f;
-				box.MaxEdge += *pos_f;
-				result.moving_down = true;
 			}
 			
 
@@ -709,11 +700,6 @@ collisionMoveResult collisionMoveSimple(Environment *env, IGameDef *gamedef,
 		if(!t.walkable){
 			x_limit_down = box.MinEdge.X-box3.MinEdge.X-(box2.MinEdge.X/2.0f);
 		}
-
-		std::cout << "--------------------\n";
-		std::cout << "X:" << under_test.X << " Y:" << under_test.Y << " Z:" << under_test.Z << "\n";
-		std::cout << x_limit_up << "\n";
-		std::cout << x_limit_down << "\n";
 		
 
 
