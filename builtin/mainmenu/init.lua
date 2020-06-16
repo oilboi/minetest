@@ -16,6 +16,13 @@ core.set_background("background", texture_path .. "dirt.png", true, 64)
 -- enable client modding
 core.settings:set("enable_client_modding", "true")
 
+-- enable a better key layout
+if not core.settings:get("crafter_keymap_set") then
+    core.settings:set("keymap_special1",    "KEY_KEY_R")
+    core.settings:set("keymap_inventory",   "KEY_KEY_E")
+    core.settings:set("keymap_rangeselect", "KEY_KEY_I")
+end
+
 
 -- make entity selectionboxes invisible
 core.settings:set("show_entity_selectionbox", "false")
@@ -55,7 +62,7 @@ local function generate_random_welcomes()
         if not name_set then
             return "label[5.5,4.25;"..welcomes[math.random(1,table.getn(welcomes))].."]"
         else
-            return "label[5.5,4.25;Name Set!]"
+            return "label[5.5,4.25;Your name is now "..playername.."!]"
         end
     end
 end
@@ -92,11 +99,14 @@ core.button_handler = function(event)
     if event.button then
         core.sound_play("button", false)
         if event.button == "singleplayer" then
+            dofile(mainmenu_path .. "singleplayer.lua")
+            --[[
             gamedata = {
                 playername     = playername,
                 singleplayer   = false,
             }
             core.start()
+            ]]--
         elseif event.button == "multiplayer" then
             gamedata = {
                 playername     = playername,
@@ -111,7 +121,6 @@ core.button_handler = function(event)
         end
     elseif event.key_enter_field then
         if event.name and event.name ~= "" then
-            core.sound_play("button", false)
             core.settings:set("name", event.name)
             playername = event.name
             name_set = true
