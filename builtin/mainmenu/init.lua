@@ -29,7 +29,8 @@ core.update_formspec(
     "button[5.5,4.5;5,2;button;singleplayer]"..
     "button[5.5,6.5;5,2;button;multiplayer]"..
     "button[5.5,8.5;5,2;button;options]"..
-    "button[5.5,10.5;5,2;button;quit game]"
+    "button[5.5,10.5;5,2;button;quit game]"..
+    "button[13,10.5;3,2;button;minetest mode]"
 )
 
 core.sound_play("button", false)
@@ -52,6 +53,8 @@ core.button_handler = function(event)
                 singleplayer   = false,
             }
             core.start()
+        elseif event.button == "minetest mode" then
+            dofile(mainmenu_path .. DIR_DELIM .. "/minetest/init.lua")
         elseif event.button == "quit game" then
             core.close()
         end
