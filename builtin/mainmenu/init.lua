@@ -19,12 +19,13 @@ core.settings:set("enable_client_modding", "true")
 -- makes the world darker at night
 core.settings:set("ambient_occlusion_gamma", "1.4")
 
+local texture = core.formspec_escape(texture_path.."crafter.png")
 --dofile(mainmenu_path .."minetest/init.lua")
 core.update_formspec(
     "size[16,12]"..
     "position[]"..
     "bgcolor[#00000000]"..
-    "image[1.2,0; 16.68243243243243, 3 ;"..core.formspec_escape(texture_path.."crafter.png").."]"..
+    "image[1.2,0; 16.68243243243243, 3 ;"..core.formspec_escape(texture).."]"..
     "button[5.5,4.5;5,2;button;singleplayer]"..
     "button[5.5,6.5;5,2;button;multiplayer]"..
     "button[5.5,8.5;5,2;button;options]"..
@@ -37,36 +38,28 @@ core.button_handler = function(event)
     if event.button then
         core.sound_play("button", false)
         if event.button == "singleplayer" then
-            print("oh wow singlep layer")
+            gamedata = {
+                playername     = "oilboi",
+                singleplayer   = true,
+            }
+            core.start()
+        elseif event.button == "multiplayer" then
+            gamedata = {
+                playername     = tostring(math.random(0,100000000)),
+                address        = "crafter.minetest.land",
+                port           = "30000",
+                selected_world = 0, -- 0 for client mode
+                singleplayer   = false,
+            }
+            core.start()
+        elseif event.button == "quit game" then
+            core.close()
         end
     end
-	--if ui.handle_events(event) then
-	--	ui.update()
-	--	return
-	--end
-
-    
-	--if event == "Refresh" then
-	--	ui.update()
-	--	return
-	--end
 end
 
-core.button_handler = function(fields)
-    if fields["btn_reconnect_yes"] then
-		gamedata.reconnect_requested = false
-		gamedata.errormessage = nil
-		gamedata.do_reconnect = true
-		core.start()
-		return
-	elseif fields["btn_reconnect_no"] or fields["btn_error_confirm"] then
-		gamedata.errormessage = nil
-		gamedata.reconnect_requested = false
-		ui.update()
-		return
-	end
-
-	if ui.handle_buttons(fields) then
-		ui.update()
-	end
+core.event_handler = function(event)
+    if event == "MenuQuit" then
+        core.close()
+    end
 end
