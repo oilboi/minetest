@@ -25,23 +25,48 @@ core.update_formspec(
     "position[]"..
     "bgcolor[#00000000]"..
     "image[1.2,0; 16.68243243243243, 3 ;"..core.formspec_escape(texture_path.."crafter.png").."]"..
-    "button[5.5,4.5;5,2;singleplayer;singleplayer]"..
-    "button[5.5,6.5;5,2;multiplayer;multiplayer]"..
-    "button[5.5,8.5;5,2;options;options]"..
-    "button[5.5,10.5;5,2;quit;quit game]"
+    "button[5.5,4.5;5,2;button;singleplayer]"..
+    "button[5.5,6.5;5,2;button;multiplayer]"..
+    "button[5.5,8.5;5,2;button;options]"..
+    "button[5.5,10.5;5,2;button;quit game]"
 )
 
 core.sound_play("button", false)
 
-function core.buttonhandler(fields)
+core.button_handler = function(event)
+    if event.button then
+        core.sound_play("button", false)
+        if event.button == "singleplayer" then
+            print("oh wow singlep layer")
+        end
+    end
+	--if ui.handle_events(event) then
+	--	ui.update()
+	--	return
+	--end
 
-    print("test")
+    
+	--if event == "Refresh" then
+	--	ui.update()
+	--	return
+	--end
 end
 
-function core.event_handler(event)
-    print("test")
-end
+core.button_handler = function(fields)
+    if fields["btn_reconnect_yes"] then
+		gamedata.reconnect_requested = false
+		gamedata.errormessage = nil
+		gamedata.do_reconnect = true
+		core.start()
+		return
+	elseif fields["btn_reconnect_no"] or fields["btn_error_confirm"] then
+		gamedata.errormessage = nil
+		gamedata.reconnect_requested = false
+		ui.update()
+		return
+	end
 
-function core.buttonhandler(fields)
-    print("test")
+	if ui.handle_buttons(fields) then
+		ui.update()
+	end
 end
