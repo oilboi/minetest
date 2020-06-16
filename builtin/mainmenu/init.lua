@@ -1,53 +1,19 @@
---Minetest
---Copyright (C) 2014 sapier
---
---This program is free software; you can redistribute it and/or modify
---it under the terms of the GNU Lesser General Public License as published by
---the Free Software Foundation; either version 2.1 of the License, or
---(at your option) any later version.
---
---This program is distributed in the hope that it will be useful,
---but WITHOUT ANY WARRANTY; without even the implied warranty of
---MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---GNU Lesser General Public License for more details.
---
---You should have received a copy of the GNU Lesser General Public License along
---with this program; if not, write to the Free Software Foundation, Inc.,
---51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+-- disable the clouds to save gpu
+core.set_clouds(false)
 
-mt_color_grey  = "#AAAAAA"
-mt_color_blue  = "#6389FF"
-mt_color_green = "#72FF63"
-mt_color_dark_green = "#25C191"
+-- get paths
+mainmenu_path = core.get_builtin_path() .. DIR_DELIM .. "/mainmenu/"
 
-local menupath = core.get_mainmenu_path()
-local basepath = core.get_builtin_path()
-local menustyle = core.settings:get("main_menu_style")
-defaulttexturedir = core.get_texturepath_share() .. DIR_DELIM .. "base" ..
-					DIR_DELIM .. "pack" .. DIR_DELIM
+texture_path = mainmenu_path .. DIR_DELIM .. "/textures/"
+sound_path   = mainmenu_path .. DIR_DELIM .. "/sounds/"
 
-dofile(basepath .. "common" .. DIR_DELIM .. "filterlist.lua")
-dofile(basepath .. "fstk" .. DIR_DELIM .. "buttonbar.lua")
-dofile(basepath .. "fstk" .. DIR_DELIM .. "dialog.lua")
-dofile(basepath .. "fstk" .. DIR_DELIM .. "tabview.lua")
-dofile(basepath .. "fstk" .. DIR_DELIM .. "ui.lua")
-dofile(menupath .. DIR_DELIM .. "async_event.lua")
-dofile(menupath .. DIR_DELIM .. "common.lua")
-dofile(menupath .. DIR_DELIM .. "pkgmgr.lua")
-dofile(menupath .. DIR_DELIM .. "textures.lua")
+click = sound_path .. "click"
 
-dofile(menupath .. DIR_DELIM .. "dlg_config_world.lua")
-dofile(menupath .. DIR_DELIM .. "dlg_settings_advanced.lua")
-dofile(menupath .. DIR_DELIM .. "dlg_contentstore.lua")
-if menustyle ~= "simple" then
-	dofile(menupath .. DIR_DELIM .. "dlg_create_world.lua")
-	dofile(menupath .. DIR_DELIM .. "dlg_delete_content.lua")
-	dofile(menupath .. DIR_DELIM .. "dlg_delete_world.lua")
-	dofile(menupath .. DIR_DELIM .. "dlg_rename_modpack.lua")
-end
 
-local tabs = {}
+-- set the background
+core.set_background("background", texture_path .. "dirt.png", true, 64)
 
+<<<<<<< Updated upstream
 tabs.settings = dofile(menupath .. DIR_DELIM .. "tab_settings.lua")
 tabs.content  = dofile(menupath .. DIR_DELIM .. "tab_content.lua")
 tabs.credits  = dofile(menupath .. DIR_DELIM .. "tab_credits.lua")
@@ -57,24 +23,29 @@ else
 	tabs.local_game = dofile(menupath .. DIR_DELIM .. "tab_local.lua")
 	tabs.play_online = dofile(menupath .. DIR_DELIM .. "tab_online.lua")
 end
+=======
+-- enable client modding
+core.settings:set("enable_client_modding", "true")
+>>>>>>> Stashed changes
 
---------------------------------------------------------------------------------
-local function main_event_handler(tabview, event)
-	if event == "MenuQuit" then
-		core.close()
-	end
-	return true
-end
+-- makes the world darker at night
+core.settings:set("ambient_occlusion_gamma", "1.4")
 
---------------------------------------------------------------------------------
-local function init_globals()
-	-- Init gamedata
-	gamedata.worldindex = 0
+--dofile(mainmenu_path .."minetest/init.lua")
+core.update_formspec(
+    "size[16,12]"..
+    "position[]"..
+    "bgcolor[#00000000]"..
+    "image[-1,0; 22.24324324324324, 4 ;"..core.formspec_escape(texture_path.."crafter.png").."]"..
+    "button[5.55,4.5;5,2;singleplayer;singleplayer]"..
+    "button[5.55,6.5;5,2;multiplayer;multiplayer]"..
+    "button[5.55,8.5;5,2;options;options]"..
+    "button[5.55,10.5;5,2;quit;quit game]"
+)
 
-	if menustyle == "simple" then
-		local world_list = core.get_worlds()
-		local world_index
+core.sound_play(sound_path .. "lever", true)
 
+<<<<<<< Updated upstream
 		local found_singleplayerworld = false
 		for i, world in ipairs(world_list) do
 			if world.name == "singleplayerworld" then
@@ -156,3 +127,6 @@ local function init_globals()
 end
 
 init_globals()
+=======
+--core.buttonhandler(fields)
+>>>>>>> Stashed changes
