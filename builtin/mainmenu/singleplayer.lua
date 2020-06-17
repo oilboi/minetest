@@ -43,12 +43,7 @@ core.update_formspec(
     "field[5.8,0.4;5,2;world_name;name;]"..
     "field[5.8,1.5;5,2;world_seed;seed;]"..
     "button[5.5, 2.1 ;5,2;button;create new world]"..
-    --"bgcolor[#00000000]"..
-    --"image[1.2,0; 16.68243243243243, 3 ;"..core.formspec_escape(texture).."]"..
-    --generate_random_welcomes()..
-    --"field[5.8 ,4.5;5,2;name;;"..core.formspec_escape(get_name()).."]"..
-    --"button[5.5,5.5;5,2;button;singleplayer]"..
-    --"button[5.5,7  ;5,2;button;multiplayer]"..
+    "bgcolor[#00000000]"..
     "button[5.5, 8.75;2,2;button;delete]"..
     "button[8.51,8.75;2,2;button;play]"..
     "button[5.5, 10 ;5,2;button;back]"
@@ -69,7 +64,7 @@ local function set_world_seed(name,seed)
                     map_meta = map_meta .. line.."\n"
                 end
             end
-            
+
             local f = io.open(path,"w")
             f:write(map_meta)
             f:close()
@@ -82,14 +77,14 @@ end
 core.button_handler = function(event)
     if event.button then
         core.sound_play("button", false)
-        if event.button == "singleplayer" then
-            --[[
+        if event.button == "play" then            
             gamedata = {
                 playername     = playername,
                 singleplayer   = false,
+                selected_world = core.settings:get("last_selected_world"),
             }
+
             core.start()
-            ]]--
         elseif event.button == "create new world" then
             if event.world_name then
                 local seed
