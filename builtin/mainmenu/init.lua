@@ -16,6 +16,9 @@ core.set_background("background", texture_path .. "dirt.png", true, 64)
 -- enable client modding
 core.settings:set("enable_client_modding", "true")
 
+-- for debugging - remove
+core.settings:set("enable_console", "true")
+
 -- enable a better key layout
 if not core.settings:get("crafter_keymap_set") then
     core.settings:set("keymap_special1",    "KEY_KEY_R")
@@ -81,7 +84,7 @@ local texture = core.formspec_escape(texture_path.."crafter.png")
 --dofile(mainmenu_path .."minetest/init.lua")
 core.update_formspec(
     "size[16,12]"..
-    "position[]"..
+    "position[0.5,0.5]"..
     "bgcolor[#00000000]"..
     "image[1.2,0; 16.68243243243243, 3 ;"..core.formspec_escape(texture).."]"..
     generate_random_welcomes()..
@@ -92,10 +95,8 @@ core.update_formspec(
     "button[5.5,10;5,2;button;quit game]"
 )
 
-core.sound_play("button", false)
-
 core.button_handler = function(event)
-    print(dump(event))
+    --print(dump(event))
     if event.button then
         core.sound_play("button", false)
         if event.button == "singleplayer" then
@@ -121,6 +122,7 @@ core.button_handler = function(event)
         end
     elseif event.key_enter_field then
         if event.name and event.name ~= "" then
+            core.sound_play("button", false)
             core.settings:set("name", event.name)
             playername = event.name
             name_set = true
@@ -134,3 +136,5 @@ core.event_handler = function(event)
         core.close()
     end
 end
+
+name_set = false
