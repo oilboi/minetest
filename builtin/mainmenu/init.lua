@@ -101,13 +101,6 @@ core.button_handler = function(event)
         core.sound_play("button", false)
         if event.button == "singleplayer" then
             dofile(mainmenu_path .. "singleplayer.lua")
-            --[[
-            gamedata = {
-                playername     = playername,
-                singleplayer   = false,
-            }
-            core.start()
-            ]]--
         elseif event.button == "multiplayer" then
             gamedata = {
                 playername     = playername,
@@ -117,6 +110,8 @@ core.button_handler = function(event)
                 singleplayer   = false,
             }
             core.start()
+        elseif event.button == "options" then
+            dofile(mainmenu_path .. "options.lua")
         elseif event.button == "quit game" then
             core.close()
         end
