@@ -106,6 +106,7 @@ end
 
 core.event_handler = function(event)
     if event == "MenuQuit" then
+        core.settings:set("page","mainmenu")
         core.sound_play("button", false)
         dofile(mainmenu_path .. "init.lua")
     end

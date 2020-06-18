@@ -36,6 +36,16 @@ core.settings:set("ambient_occlusion_gamma", "1.4")
 -- get the player's name
 playername = core.settings:get("name")
 
+-- make the game return to the last screen
+local page = core.settings:get("page")
+if page == "singleplayer" then
+    dofile(mainmenu_path .. "singleplayer.lua")
+    return
+end
+
+core.settings:set("page","mainmenu")
+
+
 local welcomes = {
     "Welcome back!",
     "It's nice seeing you again!",

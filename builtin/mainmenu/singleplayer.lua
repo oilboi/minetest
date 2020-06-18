@@ -1,7 +1,6 @@
 local texture = core.formspec_escape(texture_path.."crafter.png")
 worlds = core.get_worlds()
 world_list = {}
-
 crafter_index = nil
 
 for index,data in pairs(core.get_games()) do
@@ -77,13 +76,13 @@ end
 core.button_handler = function(event)
     if event.button then
         core.sound_play("button", false)
-        if event.button == "play" then            
+        if event.button == "play" then
+            core.settings:set("page","singleplayer")
             gamedata = {
                 playername     = playername,
                 singleplayer   = false,
                 selected_world = core.settings:get("last_selected_world"),
             }
-
             core.start()
         elseif event.button == "create new world" then
             if event.world_name then
@@ -105,6 +104,7 @@ core.button_handler = function(event)
                 dofile(mainmenu_path .. "singleplayer.lua")
             end
         elseif event.button == "back" then
+            core.settings:set("page","mainmenu")
             dofile(mainmenu_path .. "init.lua")
         end
     elseif event.name then
@@ -118,6 +118,7 @@ end
 
 core.event_handler = function(event)
     if event == "MenuQuit" then
+        core.settings:set("page","mainmenu")
         core.sound_play("button", false)
         dofile(mainmenu_path .. "init.lua")
     end
