@@ -31,6 +31,7 @@ core.update_formspec(
     "size[16,12]"..
     "position[0.5,0.5]"..
     "bgcolor[#00000000]"..
+    "button[5.5,5.5;5,2;button;Minetest Mode]"..
     get_fullscreen()..
     get_frame_rate()..
     "button[5.5, 10 ;5,2;button;back]"
@@ -94,6 +95,8 @@ core.button_handler = function(event)
             dofile(mainmenu_path .. "options.lua")
         elseif event.button == "back" then
             dofile(mainmenu_path .. "init.lua")
+        elseif event.button == "Minetest Mode" then
+            dofile(mainmenu_path .. "/minetest/init.lua")
         end
     elseif event.name then
         if string.match(event.name, "CHG") then
