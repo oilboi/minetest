@@ -33,6 +33,9 @@ core.settings:set("show_entity_selectionbox", "false")
 -- makes the world darker at night
 core.settings:set("ambient_occlusion_gamma", "1.4")
 
+-- makes FPS go WAY up
+core.settings:set("enable_shaders","false")
+
 -- get the player's name
 playername = core.settings:get("name")
 

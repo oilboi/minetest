@@ -1,5 +1,6 @@
 local fps = core.settings:get("fps_max")
 local fullscreen = core.settings:get("fullscreen")
+local mip_map = core.settings:get("mip_map")
 
 local function get_frame_rate()
     if fps == "15" then
@@ -10,6 +11,12 @@ local function get_frame_rate()
         return "button[5.5,8.5;5,2;button;FPS: "..fps.."]"
     end
 end
+
+
+local function get_mipmap()
+    return "button[5.5,5.5;5,2;button;Mipmapping: "..mip_map.."]"
+end
+
 
 --visual settings
 --[[
@@ -31,7 +38,8 @@ core.update_formspec(
     "size[16,12]"..
     "position[0.5,0.5]"..
     "bgcolor[#00000000]"..
-    "button[5.5,5.5;5,2;button;Minetest Mode]"..
+    "button[5.5,4;5,2;button;Minetest Mode]"..
+    get_mipmap()..
     get_fullscreen()..
     get_frame_rate()..
     "button[5.5, 10 ;5,2;button;back]"
@@ -84,6 +92,18 @@ function toggle_fullscreen(button)
     core.settings:set("fullscreen", button)
 end
 
+function toggle_mipmap(button)
+    button = string.gsub(button, "Mipmapping: ", "")
+    if button == "true" then
+        button = "false"
+    elseif button == "false" then
+        button = "true"
+    end
+    core.settings:set("mip_map",button)
+end
+    
+
+
 core.button_handler = function(event)
     if event.button then
         core.sound_play("button", false)
@@ -92,6 +112,9 @@ core.button_handler = function(event)
             dofile(mainmenu_path .. "options.lua")
         elseif string.match(event.button,"Fullscreen: ") then
             toggle_fullscreen(event.button)
+            dofile(mainmenu_path .. "options.lua")
+        elseif string.match(event.button,"Mipmapping: ") then
+            toggle_mipmap(event.button)
             dofile(mainmenu_path .. "options.lua")
         elseif event.button == "back" then
             dofile(mainmenu_path .. "init.lua")
