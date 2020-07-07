@@ -704,9 +704,6 @@ bool openURL(const std::string &url)
 
 #if defined(_WIN32)
 	return (intptr_t)ShellExecuteA(NULL, NULL, url.c_str(), NULL, NULL, SW_SHOWNORMAL) > 32;
-#elif defined(__ANDROID__)
-	openURLAndroid(url);
-	return true;
 #elif defined(__APPLE__)
 	const char *argv[] = {"open", url.c_str(), NULL};
 	return posix_spawnp(NULL, "open", NULL, NULL, (char**)argv,
