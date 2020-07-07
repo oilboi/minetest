@@ -287,8 +287,8 @@ void MeshUpdateThread::doUpdate()
 {
 	QueuedMeshUpdate *q;
 	while ((q = m_queue_in.pop())) {
-		if (m_generation_interval)
-			sleep_ms(m_generation_interval);
+		//if (m_generation_interval)
+			//sleep_ms(m_generation_interval);
 		ScopeProfiler sp(g_profiler, "Client: Mesh making (sum)");
 
 		MapBlockMesh *mesh_new = new MapBlockMesh(q->data, m_camera_offset);

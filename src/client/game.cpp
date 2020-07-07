@@ -1179,7 +1179,7 @@ void Game::shutdown()
 			assert(shader_src != NULL);
 			texture_src->processQueue();
 			shader_src->processQueue();
-			sleep_ms(100);
+			//sleep_ms(100);
 		}
 	}
 }

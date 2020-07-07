@@ -101,8 +101,8 @@ bool Thread::start()
 	// Allow spawned thread to continue
 	m_start_finished_mutex.unlock();
 
-	while (!m_running)
-		sleep_ms(1);
+	//while (!m_running)
+	//	sleep_ms(1);
 
 	m_joinable = true;
 

@@ -719,7 +719,7 @@ bool safeWriteToFile(const std::string &path, const std::string &content)
 				MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH);
 		if (rename_success)
 			break;
-		sleep_ms(1);
+		//sleep_ms(1);
 		++number_attempts;
 	}
 #else
