@@ -1962,23 +1962,6 @@ msgstr "th"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) แก้ไขตำแหน่งของจอยสติ๊กเสมือน\n"
-"หากปิดใช้งานจอยสติกเสมือนจะอยู่ที่ตำแหน่งแรกของสัมผัส"
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) ใช้จอยสติ๊กเสมือนเพื่อเรียกปุ่ม \"aux\"\n"
-"หากเปิดใช้งานจอยสติกเสมือนจริงก็จะแตะปุ่ม \"aux\" เมื่ออยู่นอกวงกลมหลัก"
-
-#: src/settings_translation_file.cpp
-msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
 "Can be used to move a desired point to (0, 0) to create a\n"
 "suitable spawn point, or to allow 'zooming in' on a desired\n"
@@ -2171,10 +2154,10 @@ msgstr "เพิ่มอนุภาคเมื่อขุดโหนด."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"ปรับการกำหนดค่า dpi ให้กับหน้าจอของคุณ (ไม่ใช่ X11 / Android เท่านั้น) เช่น สำหรับหน้าจอ "
+"ปรับการกำหนดค่า dpi ให้กับหน้าจอของคุณ (ไม่ใช่ X11) เช่น สำหรับหน้าจอ "
 "4k."
 
 #: src/settings_translation_file.cpp
@@ -6289,7 +6272,7 @@ msgid ""
 msgstr ""
 "การแสดงผลแบ็กเอนด์สำหรับ Irrlicht\n"
 "จำเป็นต้องรีสตาร์ทหลังจากเปลี่ยนสิ่งนี้\n"
-"หมายเหตุ: สำหรับ Android ให้ใช้ OGLES1 หากไม่แน่ใจ! แอปอาจไม่สามารถเริ่มต้นได้\n"
+"หมายเหตุ: สำหรับ ให้ใช้ OGLES1 หากไม่แน่ใจ! แอปอาจไม่สามารถเริ่มต้นได้\n"
 "สำหรับแพลตฟอร์มอื่น ๆ ขอแนะนำให้ใช้ OpenGL และเป็นไดรเวอร์เดียวที่มี\n"
 "รองรับ shader ในขณะนี้"
 

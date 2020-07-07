@@ -1937,24 +1937,6 @@ msgstr "eo"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) Korektas pozicion de virtuala stirstango.\n"
-"Se malŝaltita, virtuala stirstango centriĝos je la unua tuŝo."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) Uzi virtualan stirstangon por agigi la butonon «aux».\n"
-"Se ŝaltita, virtuala stirstango tuŝetos la butonon «aux» ankaŭ ekster la "
-"ĉefa ringo."
-
-#: src/settings_translation_file.cpp
-msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
 "Can be used to move a desired point to (0, 0) to create a\n"
 "suitable spawn point, or to allow 'zooming in' on a desired\n"
@@ -2168,10 +2150,10 @@ msgstr "Aldonas partiklojn ĉe fosado de mondero."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"Ĝustigi punktojn cole al via ekrano (ekster X11/Android), ekzemple por "
+"Ĝustigi punktojn cole al via ekrano (ekster X11), ekzemple por "
 "kvarmilaj ekranoj."
 
 #: src/settings_translation_file.cpp
@@ -6573,21 +6555,6 @@ msgid ""
 "maintained.\n"
 "This should be configured together with active_object_send_range_blocks."
 msgstr ""
-
-#: src/settings_translation_file.cpp
-msgid ""
-"The rendering back-end for Irrlicht.\n"
-"A restart is required after changing this.\n"
-"OpenGL is recommended. It is the only driver with\n"
-"shader support currently."
-msgstr ""
-"La bildiga internaĵo por Irrlicht.\n"
-"Rerulo necesas post ĉi tiu ŝanĝo.\n"
-"Rimarko: Sur Androido, restu ĉe OGLES1, se vi ne certas! Aplikaĵo alie "
-"povus\n"
-"malsukcesi ruliĝon. Sur aliaj sistemoj, OpenGL estas rekomendata, kaj "
-"nuntempe\n"
-"estas la sola pelilo subtenanta ombrigilojn."
 
 #: src/settings_translation_file.cpp
 msgid ""

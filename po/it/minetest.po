@@ -1939,25 +1939,6 @@ msgstr "it"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) Fissa la posizione del joytick virtuale.\n"
-"Se disabilitato, il joystick sarà centrato alla\n"
-"posizione del primo tocco."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) Usa il joystick virtuale per attivare il pulsante \"aux\".\n"
-"Se abilitato, inoltre il joystick virtuale premerà il pulsante \"aux\" "
-"quando fuori dal cerchio principale."
-
-#: src/settings_translation_file.cpp
-msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
 "Can be used to move a desired point to (0, 0) to create a\n"
 "suitable spawn point, or to allow 'zooming in' on a desired\n"
@@ -2183,10 +2164,10 @@ msgstr "Aggiunge particelle quando scavi un nodo."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"Regola la configurazione dpi per il tuo schermo (solo non X11/Android) per "
+"Regola la configurazione dpi per il tuo schermo (solo non X11) per "
 "es. per schermi 4K."
 
 #: src/settings_translation_file.cpp
@@ -6690,7 +6671,6 @@ msgid ""
 msgstr ""
 "Il back-end di rendering per Irrlicht.\n"
 "Dopo averlo cambiato è necessario un riavvio.\n"
-"Nota: su Android, si resti con OGLES1 se incerti! Altrimenti l'app potrebbe "
 "non\n"
 "partire.\n"
 "Su altre piattaforme, si raccomanda OpenGL, ed è attualmente l'unico driver\n"

@@ -1936,24 +1936,6 @@ msgstr "tr"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) sanal joystick'in konumunu sabitler.\n"
-"Devre dışı bırakılırsa, sanal joystick merkezi, ilk dokunuş konumu olur."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) \"aux\" düğmesini tetiklemek için sanal joystick kullanın.\n"
-"Etkinleştirilirse, sanal joystick, ana çemberin dışındayken \"aux\" "
-"düğmesini de dinler."
-
-#: src/settings_translation_file.cpp
-msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
 "Can be used to move a desired point to (0, 0) to create a\n"
 "suitable spawn point, or to allow 'zooming in' on a desired\n"
@@ -2166,10 +2148,10 @@ msgstr "Nodları kazarken parçacıklar ekler."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"Ekranınızın (yalnızca Android/X11 olmayan) dpi yapılandırmasını ayarlayın "
+"Ekranınızın (yalnızca X11 olmayan) dpi yapılandırmasını ayarlayın "
 "ör: 4k ekranlar için."
 
 #: src/settings_translation_file.cpp
@@ -6601,7 +6583,6 @@ msgid ""
 msgstr ""
 "Irrlicht için işleme arka ucu.\n"
 "Bunu değiştirdikten sonra tekrar başlatma gerekir.\n"
-"Not: Android'de, emin değilseniz OGLES1 kullanın! Başka türlü, uygulama\n"
 "başlayamayabilir. Diğer platformlarda, OpenGL önerilir ve şu anda gölgeleme\n"
 "desteği olan tek sürücüdür."
 

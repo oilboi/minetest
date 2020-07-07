@@ -435,7 +435,7 @@ fake_function() {
 	gettext("Screenshot quality. Only used for JPEG format.\n1 means worst quality; 100 means best quality.\nUse 0 for default quality.");
 	gettext("Advanced");
 	gettext("DPI");
-	gettext("Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k screens.");
+	gettext("Adjust dpi configuration to your screen (non X11 only) e.g. for 4k screens.");
 	gettext("Enable console window");
 	gettext("Windows systems only: Start Minetest with the command line window in the background.\nContains the same information as the file debug.txt (default name).");
 	gettext("Sound");

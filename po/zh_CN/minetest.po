@@ -1927,23 +1927,6 @@ msgstr "zh_CN"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"（Android）修复虚拟操纵杆的位置。\n"
-"如果禁用，虚拟操纵杆将居中至第一次触摸的位置。"
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"（安卓）使用虚拟操纵杆触发\"aux\"按钮。\n"
-"如果启用，虚拟操纵杆在主圆圈外会点击\"aux\"按钮。"
-
-#: src/settings_translation_file.cpp
-msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
 "Can be used to move a desired point to (0, 0) to create a\n"
 "suitable spawn point, or to allow 'zooming in' on a desired\n"
@@ -2154,9 +2137,9 @@ msgstr "挖方块时添加粒子。"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
-msgstr "为支持4K等屏幕，调节像素点密度（非 X11/Android 环境才有效）。"
+msgstr "为支持4K等屏幕，调节像素点密度（非 X11 环境才有效）。"
 
 #: src/settings_translation_file.cpp
 #, c-format

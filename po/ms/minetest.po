@@ -1942,25 +1942,6 @@ msgstr "ms"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) Menetapkan kedudukan kayu bedik maya.\n"
-"Jika dilumpuhkan, kedudukan tengah untuk kayu bedik maya akan ditentukan "
-"berdasarkan kedudukan sentuhan pertama."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) Guna kayu bedik maya untuk picu butang \"aux\".\n"
-"Jika dibolehkan, kayu bedik maya juga akan menekan butang \"aux\" apabila "
-"berada di luar bulatan utama."
-
-#: src/settings_translation_file.cpp
-msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
 "Can be used to move a desired point to (0, 0) to create a\n"
 "suitable spawn point, or to allow 'zooming in' on a desired\n"
@@ -2172,10 +2153,10 @@ msgstr "Menambah partikel apabila menggali nod."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"Laraskan konfigurasi DPI ke skrin anda (bukan X11/Android sahaja) cth. untuk "
+"Laraskan konfigurasi DPI ke skrin anda (bukan X11 sahaja) cth. untuk "
 "skrin 4K."
 
 #: src/settings_translation_file.cpp
@@ -6653,8 +6634,6 @@ msgid ""
 msgstr ""
 "Terjemahan bahagian belakang untuk Irrlicht.\n"
 "Anda perlu memulakan semula selepas mengubah tetapan ini.\n"
-"Nota: Di Android, kekalkan dengan OGLES1 jika tidak pasti! Aplikasi mungkin "
-"tidak\n"
 "boleh dimulakan jika menggunakan tetapan lain. Di platform lain, OpenGL "
 "disyorkan,\n"
 "dan ia ialah satu-satunya pemacu yang mempunyai sokongan pembayang ketika "

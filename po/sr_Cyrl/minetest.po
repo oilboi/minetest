@@ -2007,19 +2007,6 @@ msgid "LANG_CODE"
 msgstr "sr_Cyrl"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-
-#: src/settings_translation_file.cpp
 #, fuzzy
 msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
@@ -2220,10 +2207,10 @@ msgstr "Додаје честице када се блок ископа."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"Подеси dpi конфигурацију за твој екран (само за оне који нису X11/Android) "
+"Подеси dpi конфигурацију за твој екран (само за оне који нису X11) "
 "нпр. за 4k екране."
 
 #: src/settings_translation_file.cpp

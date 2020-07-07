@@ -1941,25 +1941,6 @@ msgid "LANG_CODE"
 msgstr "es"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) Fija la posición de la palanca virtual.\n"
-"Si está desactivado, la palanca virtual se centrará en la primera posición "
-"al tocar."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) Usar palanca virtual para activar el botón \"aux\".\n"
-"Si está activado, la palanca virtual también activará el botón \"aux\" fuera "
-"del círculo principal."
-
-#: src/settings_translation_file.cpp
 #, fuzzy
 msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
@@ -2188,10 +2169,10 @@ msgstr "Añade partículas al excavar un nodo."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"Ajustar la configuración de puntos por pulgada a tu pantalla (no X11/Android "
+"Ajustar la configuración de puntos por pulgada a tu pantalla (no X11 "
 "sólo), por ejemplo para pantallas 4K."
 
 #: src/settings_translation_file.cpp
@@ -2484,21 +2465,6 @@ msgid ""
 msgstr ""
 "Centro de rango de impulso de la curva de luz.\n"
 "Cuando 0.0 es el nivel mínimo de luz, 1.0 es el nivel de luz máximo."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"Changes the main menu UI:\n"
-"-   Full:  Multiple singleplayer worlds, game choice, texture pack chooser, "
-"etc.\n"
-"-   Simple: One singleplayer world, no game or texture pack choosers. May "
-"be\n"
-"necessary for smaller screens."
-msgstr ""
-"Cambia la UI del menú principal:\n"
-"-\tCompleto:\tMúltiples mundos, elección de juegos y texturas, etc.\n"
-"-\tSimple:\tUn solo mundo, sin elección de juegos o texturas.\n"
-"Puede ser necesario en pantallas pequeñas.\n"
-"-\tAutomático:\tSimple en Android, completo en otras plataformas."
 
 #: src/settings_translation_file.cpp
 #, fuzzy

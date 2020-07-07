@@ -1959,25 +1959,6 @@ msgid "LANG_CODE"
 msgstr "pt_BR"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) Corrige a posição do joystick virtual.\n"
-"Se desabilitado, o joystick virtual vai centralizar na posição do primeiro "
-"toque."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) Use joystick virtual para ativar botão \"aux\".\n"
-"Se habilitado, o joystick virtual vai também clicar no botão \"aux\" quando "
-"estiver fora do circulo principal."
-
-#: src/settings_translation_file.cpp
 #, fuzzy
 msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
@@ -2196,11 +2177,11 @@ msgstr "Adiciona partículas quando cavando um node."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
 "Ajustar configuração de dpi (profundidade de cor) para sua tela (apenas para "
-"quem não usa X11/Android) Ex para telas 4K."
+"quem não usa X11) Ex para telas 4K."
 
 #: src/settings_translation_file.cpp
 #, c-format
@@ -6620,8 +6601,6 @@ msgid ""
 msgstr ""
 "Renderizador de fundo para o irrlight.\n"
 "Uma reinicialização é necessária após alterar isso.\n"
-"Note: no android, use o OGLES1 caso em dúvida! O aplicativo pode falhar ao "
-"abrir em outro caso.\n"
 "Em outras plataformas, OpenGL é recomendo, e é o único driver com suporte a "
 "sombreamento atualmente."
 

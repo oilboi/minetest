@@ -1941,25 +1941,6 @@ msgid "LANG_CODE"
 msgstr "hu"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) A virtuális joystick helyének javítása.\n"
-"Ha ez kikapcsolva, akkor a virtuális joystick középen lesz az 'Első "
-"kattintás' pozícióban."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) Használd a virtuális joystick-ot az \"aux\" gomb kapcsolásához.\n"
-"Ha ez engedélyezve van, akkor a virtuális joystick is aktiválja az aux "
-"gombot ha kint van a fő körből."
-
-#: src/settings_translation_file.cpp
 #, fuzzy
 msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
@@ -2165,10 +2146,10 @@ msgstr "Részecskéket hoz létre egy node ásásakor."
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"Dpi konfiguráció igazítása a képernyődhöz (nem X11/csak Android) pl. 4k "
+"Dpi konfiguráció igazítása a képernyődhöz (nem X11) pl. 4k "
 "képernyőkhöz."
 
 #: src/settings_translation_file.cpp

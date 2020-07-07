@@ -1942,25 +1942,6 @@ msgid "LANG_CODE"
 msgstr "fr"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) Fixe la position du joystick virtuel.\n"
-"Si désactivé, le joystick virtuel sera centré sur la position du doigt "
-"principal."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) Utiliser le joystick vrituel pour déclencher le bouton « aux ».\n"
-"Si activé, le joystick virtuel va également appuyer sur le bouton « aux » "
-"lorsqu'en dehors du cercle principal."
-
-#: src/settings_translation_file.cpp
 #, fuzzy
 msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
@@ -2179,14 +2160,6 @@ msgstr ""
 #: src/settings_translation_file.cpp
 msgid "Adds particles when digging a node."
 msgstr "Ajoute des particules lorsqu'un bloc est creusé."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
-"screens."
-msgstr ""
-"Ajuster la résolution de votre écran (non-X11 / Android seulement) ex. pour "
-"les écrans 4k."
 
 #: src/settings_translation_file.cpp
 #, c-format
@@ -2476,23 +2449,6 @@ msgstr ""
 "Gamme de poussée de courbe de centre de lumière.\n"
 "Lorsque 0,0 est le niveau de lumière minimum, et 1,0 est le niveau de "
 "lumière maximum."
-
-#: src/settings_translation_file.cpp
-msgid ""
-"Changes the main menu UI:\n"
-"-   Full:  Multiple singleplayer worlds, game choice, texture pack chooser, "
-"etc.\n"
-"-   Simple: One singleplayer world, no game or texture pack choosers. May "
-"be\n"
-"necessary for smaller screens."
-msgstr ""
-"Change l’interface du menu principal :\n"
-"-   Complet : Mondes solo, choix du jeu, sélecteur du pack de textures, "
-"etc.\n"
-"-   Simple : un monde solo, pas de sélecteurs de jeu ou de pack de textures. "
-"Peut être\n"
-"nécessaire pour les plus petits écrans.\n"
-"-   Auto : Simple sur Android, complet pour le reste."
 
 #: src/settings_translation_file.cpp
 #, fuzzy
@@ -6721,7 +6677,7 @@ msgid ""
 msgstr ""
 "Le moteur de rendu utilisé par Irrlicht.\n"
 "Un redémarrage est nécessaire après avoir changé cette option.\n"
-"Il est recommandé de laisser OGLES1 sur Android. Dans le cas contraire, le "
+"Dans le cas contraire, le "
 "jeu risque de planter.\n"
 "Sur les autres plateformes, OpenGL est recommandé, il s'agit du seul moteur\n"
 "à prendre en charge les shaders."

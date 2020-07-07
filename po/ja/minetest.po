@@ -1937,24 +1937,6 @@ msgstr "ja"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) バーチャルパッドの位置を修正します。\n"
-"無効にした場合、最初に触れた位置がバーチャルパッドの中心になります。"
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-"(Android) バーチャルパッドを使用して\"aux\"ボタンを起動します。\n"
-"有効にした場合、バーチャルパッドはメインサークルから外れたときにも\n"
-"\"aux\"ボタンをタップします。"
-
-#: src/settings_translation_file.cpp
-msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
 "Can be used to move a desired point to (0, 0) to create a\n"
 "suitable spawn point, or to allow 'zooming in' on a desired\n"
@@ -2164,10 +2146,10 @@ msgstr "ノードを掘る際にパーティクルを追加します。"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
-"4kスクリーンなどのための、画面の解像度の設定です (非X11/Android環境のみ)。"
+"4kスクリーンなどのための、画面の解像度の設定です (非X11環境のみ)。"
 
 #: src/settings_translation_file.cpp
 #, c-format
@@ -6570,7 +6552,6 @@ msgid ""
 msgstr ""
 "Irrlichtのレンダリングバックエンド。\n"
 "変更後は再起動が必要です。\n"
-"メモ: Androidでは、不明な場合は OGLES1 を使用してください！ \n"
 "それ以外の場合アプリは起動に失敗することがあります。\n"
 "他のプラットフォームでは、OpenGL が推奨されており、現在それが\n"
 "シェーダーをサポートする唯一のドライバです。"

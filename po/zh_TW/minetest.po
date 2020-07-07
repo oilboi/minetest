@@ -1930,22 +1930,6 @@ msgid "LANG_CODE"
 msgstr "zh_TW"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-"(Android) 修正虛擬搖桿的位置。\n"
-"如停用，虛擬搖桿將會置中於第一個觸碰的位置。"
-
-#: src/settings_translation_file.cpp
-#, fuzzy
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr "(Android) 使用虛擬搖桿觸發 \"aux\" 按鍵。\n"
-
-#: src/settings_translation_file.cpp
 #, fuzzy
 msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
@@ -2149,9 +2133,9 @@ msgstr "當挖掘節點時加入一些粒子。"
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
-msgstr "調整您螢幕的 DPI 設定（並不只有 X11/Android）例如 4K 螢幕。"
+msgstr "調整您螢幕的 DPI 設定（並不只有 X11）例如 4K 螢幕。"
 
 #: src/settings_translation_file.cpp
 #, c-format

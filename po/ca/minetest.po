@@ -2024,19 +2024,6 @@ msgid "LANG_CODE"
 msgstr "ca"
 
 #: src/settings_translation_file.cpp
-msgid ""
-"(Android) Fixes the position of virtual joystick.\n"
-"If disabled, virtual joystick will center to first-touch's position."
-msgstr ""
-
-#: src/settings_translation_file.cpp
-msgid ""
-"(Android) Use virtual joystick to trigger \"aux\" button.\n"
-"If enabled, virtual joystick will also tap \"aux\" button when out of main "
-"circle."
-msgstr ""
-
-#: src/settings_translation_file.cpp
 #, fuzzy
 msgid ""
 "(X,Y,Z) offset of fractal from world center in units of 'scale'.\n"
@@ -2241,11 +2228,11 @@ msgstr ""
 
 #: src/settings_translation_file.cpp
 msgid ""
-"Adjust dpi configuration to your screen (non X11/Android only) e.g. for 4k "
+"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
 msgstr ""
 "Ajustar la configuració de punts per polsada (dpi) a la teva pantalla (no "
-"X11/Sols Android) Ex. per a pantalles amb 4K."
+"X11) Ex. per a pantalles amb 4K."
 
 #: src/settings_translation_file.cpp
 #, c-format
