@@ -78,9 +78,7 @@ GUITable::GUITable(gui::IGUIEnvironment *env,
 	setTabOrder(-1);
 	updateAbsolutePosition();
 	float density = RenderingEngine::getDisplayDensity();
-#ifdef __ANDROID__
-	density = 1; // dp scaling is applied by the skin
-#endif
+	
 	core::rect<s32> relative_rect = m_scrollbar->getRelativePosition();
 	s32 width = (relative_rect.getWidth() / (2.0 / 3.0)) * density *
 			g_settings->getFloat("gui_scaling");

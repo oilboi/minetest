@@ -183,9 +183,6 @@ void GUIPasswordChange::drawMenu()
 	driver->draw2DRectangle(bgcolor, AbsoluteRect, &AbsoluteClippingRect);
 
 	gui::IGUIElement::draw();
-#ifdef __ANDROID__
-	getAndroidUIInput();
-#endif
 }
 
 void GUIPasswordChange::acceptInput()
@@ -282,26 +279,3 @@ std::string GUIPasswordChange::getNameByID(s32 id)
 	}
 	return "";
 }
-
-#ifdef __ANDROID__
-bool GUIPasswordChange::getAndroidUIInput()
-{
-	if (!hasAndroidUIInput())
-		return false;
-
-	gui::IGUIElement *e = nullptr;
-	if (m_jni_field_name == "old_password")
-		e = getElementFromId(ID_oldPassword);
-	else if (m_jni_field_name == "new_password_1")
-		e = getElementFromId(ID_newPassword1);
-	else if (m_jni_field_name == "new_password_2")
-		e = getElementFromId(ID_newPassword2);
-
-	if (e) {
-		std::string text = porting::getInputDialogValue();
-		e->setText(utf8_to_wide(text).c_str());
-	}
-	m_jni_field_name.clear();
-	return false;
-}
-#endif

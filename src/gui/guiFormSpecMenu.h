@@ -259,10 +259,6 @@ public:
 	GUITable* getTable(const std::string &tablename);
 	std::vector<std::string>* getDropDownValues(const std::string &name);
 
-#ifdef __ANDROID__
-	bool getAndroidUIInput();
-#endif
-
 protected:
 	v2s32 getBasePos() const
 	{
