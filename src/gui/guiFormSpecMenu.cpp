@@ -108,8 +108,7 @@ GUIFormSpecMenu::GUIFormSpecMenu(JoystickController *joystick,
 	m_formspec_prepend(formspecPrepend),
 	m_form_src(fsrc),
 	m_text_dst(tdst),
-	m_joystick(joystick),
-	m_remap_dbl_click(remap_dbl_click)
+	m_joystick(joystick)
 {
 	current_keys_pending.key_down = false;
 	current_keys_pending.key_up = false;
@@ -3860,9 +3859,6 @@ bool GUIFormSpecMenu::DoubleClickDetection(const SEvent event)
 	 * an ESC must be explicitly set when creating this class via the
 	 * /p remap_dbl_click parameter of the constructor.
 	 */
-
-	if (!m_remap_dbl_click)
-		return false;
 
 	if (event.MouseInput.Event == EMIE_LMOUSE_PRESSED_DOWN) {
 		m_doubleclickdetect[0].pos  = m_doubleclickdetect[1].pos;
