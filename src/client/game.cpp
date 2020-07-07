@@ -158,9 +158,7 @@ struct LocalFormspecHandler : public TextDest
 
 			if (fields.find("btn_exit_os") != fields.end()) {
 				g_gamecallback->exitToOS();
-#ifndef __ANDROID__
 				RenderingEngine::get_raw_device()->closeDevice();
-#endif
 				return;
 			}
 
