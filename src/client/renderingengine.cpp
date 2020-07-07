@@ -37,7 +37,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "gettext.h"
 #include "../gui/guiSkin.h"
 
-#if !defined(_WIN32) && !defined(__APPLE__) && !defined(__ANDROID__) && \
+#if !defined(_WIN32) && !defined(__APPLE__) && \
 		!defined(SERVER) && !defined(__HAIKU__)
 #define XORG_USED
 #endif
