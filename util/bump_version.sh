@@ -16,22 +16,17 @@ prompt_for_number() {
 
 # On a release the following actions are performed
 # * DEVELOPMENT_BUILD is set to false
-# * android versionCode is bumped
 # * appdata release version and date are updated
 # * Commit the changes
 # * Tag with current version
 perform_release() {
 	sed -i -re "s/^set\(DEVELOPMENT_BUILD TRUE\)$/set(DEVELOPMENT_BUILD FALSE)/" CMakeLists.txt
 
-	sed -i -re "s/versionCode [0-9]+$/versionCode $NEW_ANDROID_VERSION_CODE/" build/android/build.gradle
-
 	sed -i '/\<release/s/\(version\)="[^"]*"/\1="'"$RELEASE_VERSION"'"/' misc/net.minetest.minetest.appdata.xml
 
 	RELEASE_DATE=`date +%Y-%m-%d`
 
 	sed -i 's/\(<release date\)="[^"]*"/\1="'"$RELEASE_DATE"'"/' misc/net.minetest.minetest.appdata.xml
-
-	git add -f CMakeLists.txt build/android/build.gradle misc/net.minetest.minetest.appdata.xml
 
 	git commit -m "Bump version to $RELEASE_VERSION"
 
@@ -78,24 +73,16 @@ cd ${0%/*}/..
 grep -q -E '^set\(VERSION_MAJOR [0-9]+\)$' CMakeLists.txt
 grep -q -E '^set\(VERSION_MINOR [0-9]+\)$' CMakeLists.txt
 grep -q -E '^set\(VERSION_PATCH [0-9]+\)$' CMakeLists.txt
-grep -q -E 'versionCode [0-9]+$' build/android/build.gradle
 
 VERSION_MAJOR=$(grep -E '^set\(VERSION_MAJOR [0-9]+\)$' CMakeLists.txt | tr -dC 0-9)
 VERSION_MINOR=$(grep -E '^set\(VERSION_MINOR [0-9]+\)$' CMakeLists.txt | tr -dC 0-9)
 VERSION_PATCH=$(grep -E '^set\(VERSION_PATCH [0-9]+\)$' CMakeLists.txt | tr -dC 0-9)
-ANDROID_VERSION_CODE=$(grep -E 'versionCode [0-9]+$' build/android/build.gradle | tr -dC 0-9)
 
 RELEASE_VERSION="$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
 
 echo "Current Minetest version: $RELEASE_VERSION"
-echo "Current Android version code: $ANDROID_VERSION_CODE"
-
-# +1 for ARM and +1 for ARM64 APKs
-NEW_ANDROID_VERSION_CODE=$(expr $ANDROID_VERSION_CODE + 2)
-NEW_ANDROID_VERSION_CODE=$(prompt_for_number "Set android version code" $NEW_ANDROID_VERSION_CODE)
 
 echo
-echo "New android version code: $NEW_ANDROID_VERSION_CODE"
 
 ########################
 # Perform release
