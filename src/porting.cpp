@@ -39,16 +39,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #if !defined(_WIN32)
 	#include <unistd.h>
 	#include <sys/utsname.h>
-	#if !defined(__ANDROID__)
-		#include <spawn.h>
-	#endif
+	#include <spawn.h>
 #endif
 #if defined(__hpux)
 	#define _PSTAT64
 	#include <sys/pstat.h>
-#endif
-#if defined(__ANDROID__)
-	#include "porting_android.h"
 #endif
 #if defined(__APPLE__)
 	// For _NSGetEnviron()
