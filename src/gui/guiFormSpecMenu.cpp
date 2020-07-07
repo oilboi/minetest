@@ -3456,6 +3456,8 @@ void GUIFormSpecMenu::drawMenu()
 			NULL, m_client, IT_ROT_HOVERED);
 	}
 
+	m_pointer = RenderingEngine::get_raw_device()->getCursorControl()->getPosition();
+
 	/*
 		Draw fields/buttons tooltips and update the mouse cursor
 	*/
@@ -3463,6 +3465,10 @@ void GUIFormSpecMenu::drawMenu()
 			Environment->getRootGUIElement()->getElementFromPoint(m_pointer);
 
 	bool hovered_element_found = false;
+
+	gui::ICursorControl *cursor_control = RenderingEngine::get_raw_device()->
+			getCursorControl();
+	gui::ECURSOR_ICON current_cursor_icon = cursor_control->getActiveIcon();
 
 	if (hovered != NULL) {
 		if (m_show_debug) {
@@ -3497,6 +3503,10 @@ void GUIFormSpecMenu::drawMenu()
 							m_tooltips[field.fname].bgcolor);
 				}
 
+				if (field.ftype != f_HyperText && // Handled directly in guiHyperText
+					current_cursor_icon != field.fcursor_icon)
+				cursor_control->setActiveIcon(field.fcursor_icon);
+
 				hovered_element_found = true;
 
 				break;
@@ -3505,6 +3515,8 @@ void GUIFormSpecMenu::drawMenu()
 	}
 
 	if (!hovered_element_found) {
+		if (current_cursor_icon != ECI_NORMAL)
+			cursor_control->setActiveIcon(ECI_NORMAL);
 	}
 
 	m_tooltip_element->draw();
