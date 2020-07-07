@@ -319,24 +319,13 @@ void Hud::drawLuaElements(const v3s16 &camera_offset)
 										 (e->number >> 0)  & 0xFF);
 				std::wstring text = unescape_translate(utf8_to_wide(e->text));
 				core::dimension2d<u32> textsize = textfont->getDimension(text.c_str());
-#ifdef __ANDROID__
-				// The text size on Android is not proportional with the actual scaling
-				irr::gui::IGUIFont *font_scaled = font_size <= 3 ?
-					textfont : g_fontengine->getFont(font_size - 3);
-				if (e->offset.X < -20)
-					textsize = font_scaled->getDimension(text.c_str());
-#endif
+
 				v2s32 offset((e->align.X - 1.0) * (textsize.Width / 2),
 				             (e->align.Y - 1.0) * (textsize.Height / 2));
 				core::rect<s32> size(0, 0, e->scale.X * m_scale_factor,
 				                     text_height * e->scale.Y * m_scale_factor);
 				v2s32 offs(e->offset.X * m_scale_factor,
 				           e->offset.Y * m_scale_factor);
-#ifdef __ANDROID__
-				if (e->offset.X < -20)
-					font_scaled->draw(text.c_str(), size + pos + offset + offs, color);
-				else
-#endif
 				{
 					textfont->draw(text.c_str(), size + pos + offset + offs, color);
 				}
