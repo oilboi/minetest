@@ -3766,7 +3766,7 @@ void dedicated_server_loop(Server &server, bool &kill)
 	for(;;) {
 		// This is kind of a hack but can be done like this
 		// because server.step() is very light
-		//sleep_ms((int)(steplen*1000.0));
+		sleep_ms((int)(steplen*1000.0));
 
 		server.step(steplen);
 
