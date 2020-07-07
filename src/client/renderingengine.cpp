@@ -52,9 +52,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <winuser.h>
 #endif
 
-#if ENABLE_GLES
-#include "filesys.h"
-#endif
 
 RenderingEngine *RenderingEngine::s_singleton = nullptr;
 
@@ -129,15 +126,6 @@ RenderingEngine::RenderingEngine(IEventReceiver *receiver)
 	params.EventReceiver = receiver;
 	params.HighPrecisionFPU = g_settings->getBool("high_precision_fpu");
 	params.ZBufferBits = 24;
-#ifdef __ANDROID__
-	params.PrivateData = porting::app_global;
-#endif
-#if ENABLE_GLES
-	// there is no standardized path for these on desktop
-	std::string rel_path = std::string("client") + DIR_DELIM
-			+ "shaders" + DIR_DELIM + "Irrlicht";
-	params.OGLES2ShaderPath = (porting::path_share + DIR_DELIM + rel_path + DIR_DELIM).c_str();
-#endif
 
 	m_device = createDeviceEx(params);
 	driver = m_device->getVideoDriver();
@@ -502,17 +490,11 @@ void RenderingEngine::_draw_load_screen(const std::wstring &text,
 				tsrc->getTexture("progress_bar_bg.png");
 
 		if (progress_img && progress_img_bg) {
-#ifndef __ANDROID__
+			
 			const core::dimension2d<u32> &img_size =
 					progress_img_bg->getSize();
 			u32 imgW = rangelim(img_size.Width, 200, 600);
 			u32 imgH = rangelim(img_size.Height, 24, 72);
-#else
-			const core::dimension2d<u32> img_size(256, 48);
-			float imgRatio = (float)img_size.Height / img_size.Width;
-			u32 imgW = screensize.X / 2.2f;
-			u32 imgH = floor(imgW * imgRatio);
-#endif
 			v2s32 img_pos((screensize.X - imgW) / 2,
 					(screensize.Y - imgH) / 2);
 
@@ -641,7 +623,6 @@ const char *RenderingEngine::getVideoDriverFriendlyName(irr::video::E_DRIVER_TYP
 	return driver_names[type];
 }
 
-#ifndef __ANDROID__
 #if defined(XORG_USED)
 
 static float calcDisplayDensity()
@@ -724,15 +705,3 @@ v2u32 RenderingEngine::getDisplaySize()
 
 	return deskres;
 }
-
-#else // __ANDROID__
-float RenderingEngine::getDisplayDensity()
-{
-	return porting::getDisplayDensity();
-}
-
-v2u32 RenderingEngine::getDisplaySize()
-{
-	return porting::getDisplaySize();
-}
-#endif // __ANDROID__
