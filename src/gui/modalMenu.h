@@ -53,10 +53,6 @@ public:
 	virtual bool preprocessEvent(const SEvent& event);
 	virtual bool OnEvent(const SEvent& event) { return false; };
 	virtual bool pausesGame() { return false; } // Used for pause menu
-#ifdef __ANDROID__
-	virtual bool getAndroidUIInput() { return false; }
-	bool hasAndroidUIInput();
-#endif
 
 protected:
 	virtual std::wstring getLabelByID(s32 id) = 0;
@@ -66,10 +62,6 @@ protected:
 	v2s32 m_old_pointer;  // Mouse position after previous mouse event
 	v2u32 m_screensize_old;
 	float m_gui_scale;
-#ifdef __ANDROID__
-	v2s32 m_down_pos;
-	std::string m_jni_field_name;
-#endif
 private:
 	IMenuManager *m_menumgr;
 	// This might be necessary to expose to the implementation if it
