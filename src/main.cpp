@@ -136,13 +136,8 @@ int main(int argc, char *argv[])
 		return 1;
 
 	porting::signal_handler_init();
-
-#ifdef __ANDROID__
-	porting::initAndroid();
-	porting::initializePathsAndroid();
-#else
+	
 	porting::initializePaths();
-#endif
 
 	if (!create_userdata_path()) {
 		errorstream << "Cannot create user data directory" << std::endl;
