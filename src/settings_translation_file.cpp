@@ -40,10 +40,6 @@ fake_function() {
 	gettext("Enable random user input (only used for testing).");
 	gettext("Continuous forward");
 	gettext("Continuous forward movement, toggled by autoforward key.\nPress the autoforward key again or the backwards movement to disable.");
-	gettext("Fixed virtual joystick");
-	gettext("(Android) Fixes the position of virtual joystick.\nIf disabled, virtual joystick will center to first-touch's position.");
-	gettext("Virtual joystick triggers aux button");
-	gettext("(Android) Use virtual joystick to trigger \"aux\" button.\nIf enabled, virtual joystick will also tap \"aux\" button when out of main circle.");
 	gettext("Enable joysticks");
 	gettext("Enable joysticks");
 	gettext("Joystick ID");
@@ -313,7 +309,7 @@ fake_function() {
 	gettext("Texture path");
 	gettext("Path to texture directory. All textures are first searched from here.");
 	gettext("Video driver");
-	gettext("The rendering back-end for Irrlicht.\nA restart is required after changing this.\nNote: On Android, stick with OGLES1 if unsure! App may fail to start otherwise.\nOn other platforms, OpenGL is recommended, and it’s the only driver with\nshader support currently.");
+	gettext("The rendering back-end for Irrlicht.\nA restart is required after changing this.\nOpenGL is recommended, and it’s the only driver with\nshader support currently.");
 	gettext("Cloud radius");
 	gettext("Radius of cloud area stated in number of 64 node cloud squares.\nValues larger than 26 will start to produce sharp cutoffs at cloud area corners.");
 	gettext("View bobbing factor");
