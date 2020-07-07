@@ -593,11 +593,8 @@ public:
 	}
 };
 
-#ifdef __ANDROID__
-#define SIZE_TAG "size[11,5.5]"
-#else
 #define SIZE_TAG "size[11,5.5,true]" // Fixed size on desktop
-#endif
+
 
 /****************************************************************************
 
@@ -795,10 +792,6 @@ protected:
 		return input->wasKeyDown(k);
 	}
 
-#ifdef __ANDROID__
-	void handleAndroidChatInput();
-#endif
-
 private:
 	struct Flags {
 		bool force_fog_off = false;
@@ -917,11 +910,6 @@ private:
 	bool m_camera_offset_changed = false;
 
 	bool m_does_lost_focus_pause_game = false;
-
-#ifdef __ANDROID__
-	bool m_cache_hold_aux1;
-	bool m_android_chat_open;
-#endif
 };
 
 Game::Game() :
@@ -956,11 +944,6 @@ Game::Game() :
 		&settingChangedCallback, this);
 
 	readSettings();
-
-#ifdef __ANDROID__
-	m_cache_hold_aux1 = false;	// This is initialised properly later
-#endif
-
 }
 
 
@@ -1085,11 +1068,6 @@ void Game::run()
 	draw_times.last_time = RenderingEngine::get_timer_time();
 
 	set_light_table(g_settings->getFloat("display_gamma"));
-
-#ifdef __ANDROID__
-	m_cache_hold_aux1 = g_settings->getBool("fast_move")
-			&& client->checkPrivilege("fast");
-#endif
 
 	irr::core::dimension2d<u32> previous_screen_size(g_settings->getU16("screen_w"),
 		g_settings->getU16("screen_h"));
@@ -1865,9 +1843,6 @@ void Game::processKeyInput()
 	} else if (wasKeyDown(KeyType::INVENTORY)) {
 		openInventory();
 	} else if (input->cancelPressed()) {
-#ifdef __ANDROID__
-		m_android_chat_open = false;
-#endif
 		if (!gui_chat_console->isOpenInhibited()) {
 			showPauseMenu();
 		}
@@ -2064,11 +2039,6 @@ void Game::openInventory()
 void Game::openConsole(float scale, const wchar_t *line)
 {
 	assert(scale > 0.0f && scale <= 1.0f);
-
-#ifdef __ANDROID__
-	porting::showInputDialog(gettext("ok"), "", "", 2);
-	m_android_chat_open = true;
-#else
 	if (gui_chat_console->isOpenInhibited())
 		return;
 	gui_chat_console->openConsole(scale);
@@ -2076,7 +2046,6 @@ void Game::openConsole(float scale, const wchar_t *line)
 		gui_chat_console->setCloseOnEnter(true);
 		gui_chat_console->replaceAndAddToHistory(line);
 	}
-#endif
 }
 
 #ifdef __ANDROID__
