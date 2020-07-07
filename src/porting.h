@@ -93,8 +93,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #if defined(__FreeBSD__) || defined(__NetBSD__)    || \
 	defined(__OpenBSD__) || defined(__DragonFly__) || \
 	defined(__APPLE__)   ||                           \
-	defined(__sun)       || defined(sun)           || \
-	defined(__QNX__)     || defined(__QNXNTO__)
+	defined(__sun)       || defined(sun)
 	#define HAVE_STRLCPY
 #endif
 

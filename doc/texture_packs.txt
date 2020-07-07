@@ -124,28 +124,6 @@ are placeholders intended to be overwritten by the game.
 * `server_flags_favorite.png`: icon for your favorite servers
 * `server_flags_pvp.png`: icon for enabled PvP on servers
 
-### Android textures
-
-* `down_arrow.png`
-* `left_arrow.png`
-* `right_arrow.png`
-* `up_arrow.png`
-
-* `drop_btn.png`
-* `fast_btn.png`
-* `fly_btn.png`
-* `jump_btn.png`
-* `noclip_btn.png`
-
-* `camera_btn.png`
-* `chat_btn.png`
-* `inventory_btn.png`
-* `rangeview_btn.png`
-
-* `debug_btn.png`
-* `gear_icon.png`
-* `rare_controls.png`
-
 Texture Overrides
 -----------------
 

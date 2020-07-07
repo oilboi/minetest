@@ -242,17 +242,12 @@ static inline void fixNumericLocaleInput(char* begin, char* end) {
 #else
 #define snprintf _snprintf
 #endif
-#elif defined(__ANDROID__) || defined(__QNXNTO__)
-#define snprintf snprintf
 #elif __cplusplus >= 201103L
 #if !defined(__MINGW32__) && !defined(__CYGWIN__)
 #define snprintf std::snprintf
 #endif
 #endif
 
-#if defined(__QNXNTO__)
-#define sscanf std::sscanf
-#endif
 
 #if defined(_MSC_VER) && _MSC_VER >= 1400 // VC++ 8.0
 // Disable warning about strdup being deprecated.
@@ -4185,9 +4180,7 @@ Value& Path::make(Value& root) const {
 #endif
 #else
 #include <cmath>
-#if !(defined(__QNXNTO__)) // QNX already defines isfinite
 #define isfinite std::isfinite
-#endif
 #endif
 
 #if defined(_MSC_VER)
@@ -4198,8 +4191,6 @@ Value& Path::make(Value& root) const {
 #else
 #define snprintf _snprintf
 #endif
-#elif defined(__ANDROID__) || defined(__QNXNTO__)
-#define snprintf snprintf
 #elif __cplusplus >= 201103L
 #if !defined(__MINGW32__) && !defined(__CYGWIN__)
 #define snprintf std::snprintf
