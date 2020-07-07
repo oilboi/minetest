@@ -256,11 +256,7 @@ unsigned int Thread::getNumberOfProcessors()
 
 bool Thread::bindToProcessor(unsigned int proc_number)
 {
-#if defined(__ANDROID__)
-
-	return false;
-
-#elif _MSC_VER
+#if _MSC_VER
 
 	return SetThreadAffinityMask(getThreadHandle(), 1 << proc_number);
 
