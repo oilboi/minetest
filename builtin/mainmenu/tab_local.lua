@@ -15,96 +15,89 @@
 --with this program; if not, write to the Free Software Foundation, Inc.,
 --51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-
-local enable_gamebar = PLATFORM ~= "Android"
 local current_game, singleplayer_refresh_gamebar
-if enable_gamebar then
-	function current_game()
-		local last_game_id = core.settings:get("menu_last_game")
-		local game = pkgmgr.find_by_gameid(last_game_id)
+function current_game()
+	local last_game_id = core.settings:get("menu_last_game")
+	local game = pkgmgr.find_by_gameid(last_game_id)
 
-		return game
-	end
-
-	function singleplayer_refresh_gamebar()
-
-		local old_bar = ui.find_by_name("game_button_bar")
-
-		if old_bar ~= nil then
-			old_bar:delete()
-		end
-
-		local function game_buttonbar_button_handler(fields)
-			if fields.game_open_cdb then
-				local maintab = ui.find_by_name("maintab")
-				local dlg = create_store_dlg("game")
-				dlg:set_parent(maintab)
-				maintab:hide()
-				dlg:show()
-				return true
-			end
-
-			for key,value in pairs(fields) do
-				for j=1,#pkgmgr.games,1 do
-					if ("game_btnbar_" .. pkgmgr.games[j].id == key) then
-						mm_texture.update("singleplayer", pkgmgr.games[j])
-						core.set_topleft_text(pkgmgr.games[j].name)
-						core.settings:set("menu_last_game",pkgmgr.games[j].id)
-						menudata.worldlist:set_filtercriteria(pkgmgr.games[j].id)
-						local index = filterlist.get_current_index(menudata.worldlist,
-							tonumber(core.settings:get("mainmenu_last_selected_world")))
-						if not index or index < 1 then
-							local selected = core.get_textlist_index("sp_worlds")
-							if selected ~= nil and selected < #menudata.worldlist:get_list() then
-								index = selected
-							else
-								index = #menudata.worldlist:get_list()
-							end
-						end
-						menu_worldmt_legacy(index)
-						return true
-					end
-				end
-			end
-		end
-
-		local btnbar = buttonbar_create("game_button_bar",
-			game_buttonbar_button_handler,
-			{x=-0.3,y=5.9}, "horizontal", {x=12.4,y=1.15})
-
-		for i=1,#pkgmgr.games,1 do
-			local btn_name = "game_btnbar_" .. pkgmgr.games[i].id
-
-			local image = nil
-			local text = nil
-			local tooltip = core.formspec_escape(pkgmgr.games[i].name)
-
-			if pkgmgr.games[i].menuicon_path ~= nil and
-				pkgmgr.games[i].menuicon_path ~= "" then
-				image = core.formspec_escape(pkgmgr.games[i].menuicon_path)
-			else
-
-				local part1 = pkgmgr.games[i].id:sub(1,5)
-				local part2 = pkgmgr.games[i].id:sub(6,10)
-				local part3 = pkgmgr.games[i].id:sub(11)
-
-				text = part1 .. "\n" .. part2
-				if part3 ~= nil and
-					part3 ~= "" then
-					text = text .. "\n" .. part3
-				end
-			end
-			btnbar:add_button(btn_name, text, image, tooltip)
-		end
-
-		local plus_image = core.formspec_escape(defaulttexturedir .. "plus.png")
-		btnbar:add_button("game_open_cdb", "", plus_image, fgettext("Install games from ContentDB"))
-	end
-else
-	function current_game()
-		return nil
-	end
+	return game
 end
+
+function singleplayer_refresh_gamebar()
+
+	local old_bar = ui.find_by_name("game_button_bar")
+
+	if old_bar ~= nil then
+		old_bar:delete()
+	end
+
+	local function game_buttonbar_button_handler(fields)
+		if fields.game_open_cdb then
+			local maintab = ui.find_by_name("maintab")
+			local dlg = create_store_dlg("game")
+			dlg:set_parent(maintab)
+			maintab:hide()
+			dlg:show()
+			return true
+		end
+
+		for key,value in pairs(fields) do
+			for j=1,#pkgmgr.games,1 do
+				if ("game_btnbar_" .. pkgmgr.games[j].id == key) then
+					mm_texture.update("singleplayer", pkgmgr.games[j])
+					core.set_topleft_text(pkgmgr.games[j].name)
+					core.settings:set("menu_last_game",pkgmgr.games[j].id)
+					menudata.worldlist:set_filtercriteria(pkgmgr.games[j].id)
+					local index = filterlist.get_current_index(menudata.worldlist,
+						tonumber(core.settings:get("mainmenu_last_selected_world")))
+					if not index or index < 1 then
+						local selected = core.get_textlist_index("sp_worlds")
+						if selected ~= nil and selected < #menudata.worldlist:get_list() then
+							index = selected
+						else
+							index = #menudata.worldlist:get_list()
+						end
+					end
+					menu_worldmt_legacy(index)
+					return true
+				end
+			end
+		end
+	end
+
+	local btnbar = buttonbar_create("game_button_bar",
+		game_buttonbar_button_handler,
+		{x=-0.3,y=5.9}, "horizontal", {x=12.4,y=1.15})
+
+	for i=1,#pkgmgr.games,1 do
+		local btn_name = "game_btnbar_" .. pkgmgr.games[i].id
+
+		local image = nil
+		local text = nil
+		local tooltip = core.formspec_escape(pkgmgr.games[i].name)
+
+		if pkgmgr.games[i].menuicon_path ~= nil and
+			pkgmgr.games[i].menuicon_path ~= "" then
+			image = core.formspec_escape(pkgmgr.games[i].menuicon_path)
+		else
+
+			local part1 = pkgmgr.games[i].id:sub(1,5)
+			local part2 = pkgmgr.games[i].id:sub(6,10)
+			local part3 = pkgmgr.games[i].id:sub(11)
+
+			text = part1 .. "\n" .. part2
+			if part3 ~= nil and
+				part3 ~= "" then
+				text = text .. "\n" .. part3
+			end
+		end
+		btnbar:add_button(btn_name, text, image, tooltip)
+	end
+
+	local plus_image = core.formspec_escape(defaulttexturedir .. "plus.png")
+	btnbar:add_button("game_open_cdb", "", plus_image, fgettext("Install games from ContentDB"))
+end
+
 
 local function get_formspec(tabview, name, tabdata)
 	local retval = ""

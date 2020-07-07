@@ -45,6 +45,7 @@ local active_contributors = {
 	"HybridDog [Script API]",
 	"dcbrwn [Object shading]",
 	"srifqi [Fixes]",
+	"oilboi [Removing Android]",
 }
 
 local previous_core_developers = {
