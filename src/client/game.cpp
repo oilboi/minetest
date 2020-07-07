@@ -2048,17 +2048,6 @@ void Game::openConsole(float scale, const wchar_t *line)
 	}
 }
 
-#ifdef __ANDROID__
-void Game::handleAndroidChatInput()
-{
-	if (m_android_chat_open && porting::getInputDialogState() == 0) {
-		std::string text = porting::getInputDialogValue();
-		client->typeChatMessage(utf8_to_wide(text));
-		m_android_chat_open = false;
-	}
-}
-#endif
-
 
 void Game::toggleFreeMove()
 {
