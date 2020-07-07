@@ -315,13 +315,13 @@ void GUIFormSpecMenu::parseSize(parserData* data, const std::string &element)
 		data->invsize.Y = MYMAX(0, stof(parts[1]));
 
 		lockSize(false);
-#ifndef __ANDROID__
+
 		if (parts.size() == 3) {
 			if (parts[2] == "true") {
 				lockSize(true,v2u32(800,600));
 			}
 		}
-#endif
+
 		data->explicit_size = true;
 		return;
 	}
@@ -3093,18 +3093,6 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 			// the image size can't be less than 0.3 inch
 			// multiplied by gui_scaling, even if this means
 			// the form doesn't fit the screen.
-#ifdef __ANDROID__
-			// For mobile devices these magic numbers are
-			// different and forms should always use the
-			// maximum screen space available.
-			double prefer_imgsize = mydata.screensize.Y / 10 * gui_scaling;
-			double fitx_imgsize = mydata.screensize.X /
-				((12.0 / 8.0) * (0.5 + mydata.invsize.X));
-			double fity_imgsize = mydata.screensize.Y /
-				((15.0 / 11.0) * (0.85 + mydata.invsize.Y));
-			use_imgsize = MYMIN(prefer_imgsize,
-					MYMIN(fitx_imgsize, fity_imgsize));
-#else
 			double prefer_imgsize = mydata.screensize.Y / 15 * gui_scaling;
 			double fitx_imgsize = mydata.screensize.X /
 				((5.0 / 4.0) * (0.5 + mydata.invsize.X));
@@ -3114,7 +3102,6 @@ void GUIFormSpecMenu::regenerateGui(v2u32 screensize)
 			double min_imgsize = 0.3 * screen_dpi * gui_scaling;
 			use_imgsize = MYMAX(min_imgsize, MYMIN(prefer_imgsize,
 				MYMIN(fitx_imgsize, fity_imgsize)));
-#endif
 		}
 
 		// Everything else is scaled in proportion to the
@@ -3304,35 +3291,6 @@ void GUIFormSpecMenu::legacySortElements(core::list<IGUIElement *>::Iterator fro
 		from++;
 	}
 }
-
-#ifdef __ANDROID__
-bool GUIFormSpecMenu::getAndroidUIInput()
-{
-	if (!hasAndroidUIInput())
-		return false;
-
-	// still waiting
-	if (porting::getInputDialogState() == -1)
-		return true;
-
-	std::string fieldname = m_jni_field_name;
-	m_jni_field_name.clear();
-
-	for (const FieldSpec &field : m_fields) {
-		if (field.fname != fieldname)
-			continue;
-
-		IGUIElement *element = getElementFromId(field.fid, true);
-
-		if (!element || element->getType() != irr::gui::EGUIET_EDIT_BOX)
-			return false;
-
-		std::string text = porting::getInputDialogValue();
-		((gui::IGUIEditBox *)element)->setText(utf8_to_wide(text).c_str());
-	}
-	return false;
-}
-#endif
 
 GUIInventoryList::ItemSpec GUIFormSpecMenu::getItemAtPos(v2s32 p) const
 {
@@ -3546,16 +3504,6 @@ void GUIFormSpecMenu::showTooltip(const std::wstring &text,
 	v2u32 screenSize = Environment->getVideoDriver()->getScreenSize();
 	int tooltip_offset_x = m_btn_height;
 	int tooltip_offset_y = m_btn_height;
-#ifdef __ANDROID__
-	tooltip_offset_x *= 3;
-	tooltip_offset_y  = 0;
-	if (m_pointer.X > (s32)screenSize.X / 2)
-		tooltip_offset_x = -(tooltip_offset_x + tooltip_width);
-
-	// Hide tooltip after ETIE_LEFT_UP
-	if (m_pointer.X == 0)
-		return;
-#endif
 
 	// Calculate and set the tooltip position
 	s32 tooltip_x = m_pointer.X + tooltip_offset_x;

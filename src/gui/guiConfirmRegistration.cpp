@@ -159,9 +159,6 @@ void GUIConfirmRegistration::drawMenu()
 	driver->draw2DRectangle(bgcolor, AbsoluteRect, &AbsoluteClippingRect);
 
 	gui::IGUIElement::draw();
-#ifdef __ANDROID__
-	getAndroidUIInput();
-#endif
 }
 
 void GUIConfirmRegistration::closeMenu(bool goNext)
@@ -247,19 +244,3 @@ bool GUIConfirmRegistration::OnEvent(const SEvent &event)
 
 	return false;
 }
-
-#ifdef __ANDROID__
-bool GUIConfirmRegistration::getAndroidUIInput()
-{
-	if (!hasAndroidUIInput() || m_jni_field_name != "password")
-		return false;
-
-	std::string text = porting::getInputDialogValue();
-	gui::IGUIElement *e = getElementFromId(ID_confirmPassword);
-	if (e)
-		e->setText(utf8_to_wide(text).c_str());
-
-	m_jni_field_name.clear();
-	return false;
-}
-#endif
