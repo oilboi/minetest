@@ -27,9 +27,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <istream>
 #include "util/container.h"
 #include "util/numeric.h"
-#ifndef ANDROID
-	#include "cmake_config.h"
-#endif
+#include "cmake_config.h"
+
 #if USE_SPATIAL
 	#include <spatialindex/SpatialIndex.h>
 	#include "util/serialize.h"
