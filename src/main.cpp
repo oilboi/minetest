@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
 		return 1;
 
 	porting::signal_handler_init();
-	
+
 	porting::initializePaths();
 
 	if (!create_userdata_path()) {
@@ -175,7 +175,6 @@ int main(int argc, char *argv[])
 	if (g_settings->getBool("enable_console"))
 		porting::attachOrCreateConsole();
 
-#ifndef __ANDROID__
 	// Run unit tests
 	if (cmd_args.getFlag("run-unittests")) {
 #if BUILD_UNITTESTS
@@ -186,7 +185,6 @@ int main(int argc, char *argv[])
 			<< std::endl;
 #endif
 	}
-#endif
 
 	GameParams game_params;
 #ifdef SERVER
