@@ -2165,11 +2165,9 @@ msgid "Adds particles when digging a node."
 msgstr "Voeg opvliegende deeltjes toe bij het graven."
 
 #: src/settings_translation_file.cpp
-msgid ""
-"Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
+msgid "Adjust dpi configuration to your screen (non X11 only) e.g. for 4k "
 "screens."
-msgstr ""
-"Aangepaste DPI (dots per inch) instelling voor het scherm.\n"
+msgstr "Aangepaste DPI (dots per inch) instelling voor het scherm."
 
 #: src/settings_translation_file.cpp
 #, c-format
