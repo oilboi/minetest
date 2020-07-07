@@ -2102,10 +2102,6 @@ void Game::toggleFast()
 	} else {
 		m_game_ui->showTranslatedStatusText("Fast mode disabled");
 	}
-
-#ifdef __ANDROID__
-	m_cache_hold_aux1 = fast_move && has_fast_privs;
-#endif
 }
 
 
@@ -2323,13 +2319,12 @@ void Game::updateCameraDirection(CameraOrientation *cam, float dtime)
 	if ((device->isWindowActive() && device->isWindowFocused()
 			&& !isMenuActive()) || random_input) {
 
-#ifndef __ANDROID__
+
 		if (!random_input) {
 			// Mac OSX gets upset if this is set every frame
 			if (device->getCursorControl()->isVisible())
 				device->getCursorControl()->setVisible(false);
 		}
-#endif
 
 		if (m_first_loop_after_window_activation) {
 			m_first_loop_after_window_activation = false;
@@ -2342,11 +2337,9 @@ void Game::updateCameraDirection(CameraOrientation *cam, float dtime)
 
 	} else {
 
-#ifndef ANDROID
 		// Mac OSX gets upset if this is set every frame
 		if (!device->getCursorControl()->isVisible())
 			device->getCursorControl()->setVisible(true);
-#endif
 
 		m_first_loop_after_window_activation = true;
 
@@ -2416,18 +2409,6 @@ void Game::updatePlayerControl(const CameraOrientation &cam)
 			( (u32)(input->getRightState()                            & 0x1) << 8) |
 			( (u32)(isKeyDown(KeyType::ZOOM)                          & 0x1) << 9)
 		);
-
-#ifdef ANDROID
-	/* For Android, simulate holding down AUX1 (fast move) if the user has
-	 * the fast_move setting toggled on. If there is an aux1 key defined for
-	 * Android then its meaning is inverted (i.e. holding aux1 means walk and
-	 * not fast)
-	 */
-	if (m_cache_hold_aux1) {
-		control.aux1 = control.aux1 ^ true;
-		keypress_bits ^= ((u32)(1U << 5));
-	}
-#endif
 
 	LocalPlayer *player = client->getEnv().getLocalPlayer();
 
@@ -4019,21 +4000,6 @@ void Game::showDeathFormspec()
 #define GET_KEY_NAME(KEY) gettext(getKeySetting(#KEY).name())
 void Game::showPauseMenu()
 {
-#ifdef __ANDROID__
-	static const std::string control_text = strgettext("Default Controls:\n"
-		"No menu visible:\n"
-		"- single tap: button activate\n"
-		"- double tap: place/use\n"
-		"- slide finger: look around\n"
-		"Menu/Inventory visible:\n"
-		"- double tap (outside):\n"
-		" -->close\n"
-		"- touch stack, touch slot:\n"
-		" --> move stack\n"
-		"- touch&drag, tap 2nd finger\n"
-		" --> place single item to slot\n"
-		);
-#else
 	static const std::string control_text_template = strgettext("Controls:\n"
 		"- %s: move forwards\n"
 		"- %s: move backwards\n"
@@ -4066,7 +4032,6 @@ void Game::showPauseMenu()
 
 	std::string control_text = std::string(control_text_buf);
 	str_formspec_escape(control_text);
-#endif
 
 	float ypos = simple_singleplayer_mode ? 0.7f : 0.1f;
 	std::ostringstream os;
@@ -4082,7 +4047,6 @@ void Game::showPauseMenu()
 		os << "field[4.95,0;5,1.5;;" << strgettext("Game paused") << ";]";
 	}
 
-#ifndef __ANDROID__
 #if USE_SOUND
 	if (g_settings->getBool("enable_sound")) {
 		os << "button_exit[4," << (ypos++) << ";3,0.5;btn_sound;"
@@ -4091,7 +4055,6 @@ void Game::showPauseMenu()
 #endif
 	os		<< "button_exit[4," << (ypos++) << ";3,0.5;btn_key_config;"
 		<< strgettext("Change Keys")  << "]";
-#endif
 	os		<< "button_exit[4," << (ypos++) << ";3,0.5;btn_exit_menu;"
 		<< strgettext("Exit to Menu") << "]";
 	os		<< "button_exit[4," << (ypos++) << ";3,0.5;btn_exit_os;"
