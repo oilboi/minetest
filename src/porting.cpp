@@ -414,11 +414,7 @@ bool setSystemPaths()
 	char buf[BUFSIZ];
 
 	if (!getCurrentExecPath(buf, sizeof(buf))) {
-#ifdef __ANDROID__
-		errorstream << "Unable to read bindir "<< std::endl;
-#else
 		FATAL_ERROR("Unable to read bindir");
-#endif
 		return false;
 	}
 
@@ -435,10 +431,6 @@ bool setSystemPaths()
 	trylist.push_back(bindir + DIR_DELIM ".." DIR_DELIM "share"
 		DIR_DELIM + PROJECT_NAME);
 	trylist.push_back(bindir + DIR_DELIM "..");
-
-#ifdef __ANDROID__
-	trylist.push_back(path_user);
-#endif
 
 	for (std::list<std::string>::const_iterator
 			i = trylist.begin(); i != trylist.end(); ++i) {
@@ -460,10 +452,8 @@ bool setSystemPaths()
 		break;
 	}
 
-#ifndef __ANDROID__
 	path_user = std::string(getHomeOrFail()) + DIR_DELIM "."
 		+ PROJECT_NAME;
-#endif
 
 	return true;
 }
